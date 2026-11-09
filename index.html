@@ -310,6 +310,11 @@ footer{text-align:center;font-size:13px;color:#22304a;padding:8px 16px 34px}
   <section class="card done" id="done" hidden>
     <h2>ご予約ありがとうございます</h2>
     <p>ご予約を受け付けました。確認メールをお送りしました。担当者より作業日確定のご連絡をいたします。</p>
+    <div id="refcode" hidden style="margin-top:18px;background:#fdf3e3;border:1.5px dashed var(--orange);border-radius:12px;padding:14px">
+      <div style="font-size:13px;color:var(--muted)">あなたの紹介コード</div>
+      <div id="refcodeVal" style="font-size:26px;font-weight:700;letter-spacing:.08em;color:var(--navy)"></div>
+      <p style="font-size:13px;margin:8px 0 0">ご家族やお知り合いをご紹介いただく際は、このコードをお伝えください。ご予約のときにコードを入力いただくと、ご紹介として記録されます。確認メールにも記載しています。</p>
+    </div>
   </section>
 </main>
 
@@ -489,6 +494,8 @@ form.addEventListener("submit", async e => {
     if (!j.ok) throw new Error(j.error || "送信に失敗しました");
     $("#chat").hidden = true; $("#formArea").hidden = true;
     $("#pillwrap").style.display = "none";
+    const issuedCode = j.code || j.refCode || j.referralCode || "";
+    if (issuedCode) { $("#refcodeVal").textContent = issuedCode; $("#refcode").hidden = false; }
     $("#done").hidden = false;
     window.scrollTo({ top:0, behavior:"smooth" });
   } catch (x) {
