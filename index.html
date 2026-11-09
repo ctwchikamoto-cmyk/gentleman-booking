@@ -30,6 +30,12 @@ main{max-width:560px;margin:0 auto;padding:14px 12px 34px}
 /* チャット風ウェルカム */
 .msg{margin:14px 0}
 .msg .who{font-size:12px;color:#22304a;margin:0 0 4px 4px;font-weight:700}
+.msg.shop{display:flex;gap:8px;align-items:flex-start}
+.msg.shop .avatar{flex:0 0 auto;width:38px;height:38px;border-radius:50%;background-color:#fff;
+  background-image:url("avatar.png");background-position:center;background-size:86%;background-repeat:no-repeat;
+  border:1px solid var(--line);box-shadow:0 1px 2px rgba(20,30,60,.15)}
+.msg.shop .col{min-width:0}
+#flowNo .menucard,#flowNo>.choices{margin-left:46px}
 .bubble{display:inline-block;max-width:86%;background:#fff;border-radius:18px;border-top-left-radius:4px;
   padding:11px 14px;box-shadow:0 1px 2px rgba(20,30,60,.15);white-space:pre-wrap}
 .msg.me{text-align:right}
@@ -104,31 +110,40 @@ footer{text-align:center;font-size:13px;color:#22304a;padding:8px 16px 34px}
 <main>
   <!-- ===== チャット風ウェルカム ===== -->
   <div id="chat">
-    <div class="msg">
-      <p class="who">GENTLEMAN CLEANING</p>
-      <div class="bubble">ご覧いただきありがとうございます。エアコンクリーニングのご予約でよろしいですか？</div>
-      <div class="choices" id="q1">
-        <button type="button" class="chip solid" id="btnYes">はい</button>
-        <button type="button" class="chip" id="btnNo">いいえ</button>
+    <div class="msg shop">
+      <div class="avatar"></div>
+      <div class="col">
+        <p class="who">GENTLEMAN CLEANING</p>
+        <div class="bubble">ご覧いただきありがとうございます。エアコンクリーニングのご予約でよろしいですか？</div>
+        <div class="choices" id="q1">
+          <button type="button" class="chip solid" id="btnYes">はい</button>
+          <button type="button" class="chip" id="btnNo">いいえ</button>
+        </div>
       </div>
     </div>
 
     <div id="flowYes" hidden>
       <div class="msg me"><div class="bubble">はい</div></div>
-      <div class="msg">
-        <p class="who">GENTLEMAN CLEANING</p>
-        <div class="bubble">ありがとうございます。それでは、ご予約フォームへのご入力をお願いいたします。</div>
-        <div class="choices">
-          <button type="button" class="chip solid" id="btnToForm">ご予約フォームへ進む</button>
+      <div class="msg shop">
+        <div class="avatar"></div>
+        <div class="col">
+          <p class="who">GENTLEMAN CLEANING</p>
+          <div class="bubble">ありがとうございます。それでは、ご予約フォームへのご入力をお願いいたします。</div>
+          <div class="choices">
+            <button type="button" class="chip solid" id="btnToForm">ご予約フォームへ進む</button>
+          </div>
         </div>
       </div>
     </div>
 
     <div id="flowNo" hidden>
       <div class="msg me"><div class="bubble">いいえ</div></div>
-      <div class="msg">
-        <p class="who">GENTLEMAN CLEANING</p>
-        <div class="bubble">かしこまりました。ご予約以外のご相談も承っております。</div>
+      <div class="msg shop">
+        <div class="avatar"></div>
+        <div class="col">
+          <p class="who">GENTLEMAN CLEANING</p>
+          <div class="bubble">かしこまりました。ご予約以外のご相談も承っております。</div>
+        </div>
       </div>
       <div class="menucard">
         <div class="mc-h">メニュー</div>
