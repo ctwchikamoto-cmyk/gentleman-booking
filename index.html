@@ -3,267 +3,372 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>エアコンクリーニング ご予約フォーム｜GENTLEMAN CLEANING</title>
-<meta name="description" content="GENTLEMAN CLEANING（ジェントルマンクリーニング）のエアコンクリーニングご予約フォーム。台数とオプションを選ぶと概算金額がすぐにわかります。">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<title>エアコンクリーニングのご予約｜GENTLEMAN CLEANING</title>
+<meta name="description" content="GENTLEMAN CLEANINGのエアコンクリーニングご予約フォーム。台数とオプションを選ぶと概算金額がすぐにわかります。">
 <style>
 :root{
-  --navy:#14213d; --navy2:#1f3160; --gold:#b8925a; --gold-l:#f5ede1;
-  --bg:#f6f5f2; --card:#fff; --text:#1d1d1f; --muted:#6b6b72; --line:#e3e1dc;
-  --err:#c0392b; --ok:#2e7d4f; --radius:14px;
+  --navy:#2b3a55; --orange:#e8590c; --green:#06c755; --user:#8de055;
+  --chatbg:#8fa9d1; --card:#fff; --text:#1d1d1f; --muted:#6b6b72; --line:#e0ded9;
+  --err:#c0392b; --ok:#2e7d4f; --radius:16px;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.7;font-size:16px}
-header{background:var(--navy);color:#fff;text-align:center;padding:28px 16px 26px;border-bottom:4px solid var(--gold)}
-header .brand{font-family:"Noto Serif JP",serif;letter-spacing:.18em;font-size:13px;color:var(--gold)}
-header h1{font-family:"Noto Serif JP",serif;font-size:clamp(22px,5.5vw,30px);margin:6px 0 10px;line-height:1.4}
-header p{margin:0 auto;max-width:560px;font-size:14px;opacity:.9}
-#campbar{display:none;background:var(--gold);color:#fff;text-align:center;font-weight:700;padding:8px 16px;font-size:14px}
-main{max-width:720px;margin:0 auto;padding:20px 16px 40px}
-.card{background:var(--card);border-radius:var(--radius);padding:22px 18px;margin-bottom:18px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
-h2{font-family:"Noto Serif JP",serif;font-size:19px;margin:0 0 16px;color:var(--navy);border-left:4px solid var(--gold);padding-left:10px}
-h3{font-size:15px;margin:20px 0 8px;color:var(--navy)}
-/* カウンター行 */
-.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+body{margin:0;background:var(--chatbg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;
+  line-height:1.7;font-size:17px}
+header{position:sticky;top:0;z-index:20;background:var(--navy);color:#fff;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:12px 16px;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+header .shop{font-weight:700;font-size:17px;letter-spacing:.04em}
+header button{flex-shrink:0;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.75);
+  border-radius:999px;padding:5px 14px;font:inherit;font-size:14px;cursor:pointer}
+#pillwrap{position:sticky;top:53px;z-index:19;display:none;text-align:center;padding:10px 16px 2px;background:transparent}
+#pill{display:inline-block;background:#fff;border-radius:999px;padding:8px 22px;
+  box-shadow:0 2px 10px rgba(20,30,60,.22);font-weight:700;font-size:16px}
+#pill b{color:var(--orange);font-size:24px;margin:0 2px}
+main{max-width:560px;margin:0 auto;padding:14px 12px 34px}
+/* チャット風ウェルカム */
+.msg{margin:14px 0}
+.msg .who{font-size:12px;color:#22304a;margin:0 0 4px 4px;font-weight:700}
+.bubble{display:inline-block;max-width:86%;background:#fff;border-radius:18px;border-top-left-radius:4px;
+  padding:11px 14px;box-shadow:0 1px 2px rgba(20,30,60,.15);white-space:pre-wrap}
+.msg.me{text-align:right}
+.msg.me .bubble{background:var(--user);border-radius:18px;border-top-right-radius:4px;text-align:left}
+.choices{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 4px}
+.chip{background:#fff;border:2px solid var(--green);color:#04963f;font-weight:700;
+  border-radius:999px;padding:9px 20px;font:inherit;font-size:16px;cursor:pointer}
+.chip.solid{background:var(--green);color:#fff;border-color:var(--green)}
+.chip:disabled{opacity:.45;cursor:default}
+a.chip{display:inline-block;text-decoration:none}
+.menucard{background:#fff;border-radius:14px;overflow:hidden;max-width:86%;box-shadow:0 1px 2px rgba(20,30,60,.15)}
+.menucard .mc-h{background:var(--navy);color:#fff;font-weight:700;padding:10px 14px;font-size:15px}
+.menucard .mc-b{padding:10px 14px;font-size:15px}
+.menucard .mc-b div{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px solid var(--line)}
+.menucard .mc-b div:last-child{border-bottom:none}
+/* フォーム */
+.card{background:var(--card);border-radius:var(--radius);padding:20px 16px;margin:16px 0;
+  box-shadow:0 2px 8px rgba(20,30,60,.16)}
+.card h2{font-size:19px;margin:0 0 12px;color:var(--navy);border-left:4px solid var(--green);padding-left:10px}
+.card h3{font-size:15px;margin:20px 0 6px;color:var(--navy)}
+.intro{font-size:14px;color:#444;margin:0 0 6px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
 .row:last-child{border-bottom:none}
 .row .t b{display:block;font-size:15px}
 .row .t span{display:block;font-size:13px;color:var(--muted)}
 .row.sub{padding-left:14px}
-.row.hl{background:var(--gold-l);border-radius:10px;padding:12px;border:none;margin:4px 0}
+.row.hl{background:#fdf1e7;border-radius:10px;padding:11px 10px;border:none;margin:4px 0}
 .cnt{display:flex;align-items:center;flex-shrink:0}
 .cnt button{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--navy);background:#fff;color:var(--navy);font-size:20px;line-height:1;cursor:pointer;touch-action:manipulation}
 .cnt button:disabled{opacity:.3;cursor:default}
-.cnt output{width:40px;text-align:center;font-size:18px;font-weight:700}
-.total{background:var(--navy);color:#fff;border-radius:var(--radius);padding:18px;margin-top:18px}
-.total .lbl{font-size:14px;opacity:.85}
-.total .amt{font-size:32px;font-weight:700;letter-spacing:.02em}
-.total .amt small{font-size:13px;font-weight:400;opacity:.8}
-.total ul{margin:10px 0 0;padding:10px 0 0;border-top:1px solid rgba(255,255,255,.2);list-style:none;font-size:13px;opacity:.9}
+.cnt output{width:38px;text-align:center;font-size:18px;font-weight:700}
+.total{background:#fdf6ee;border:1.5px solid #f3ddc8;border-radius:12px;padding:14px;margin-top:16px}
+.total .amt{font-size:17px;font-weight:700}
+.total .amt b{color:var(--orange);font-size:26px;margin:0 2px}
+.total ul{margin:8px 0 0;padding:8px 0 0;border-top:1px solid #eeddc9;list-style:none;font-size:13px;color:#555}
 .total li{display:flex;justify-content:space-between;gap:8px}
-.note{font-size:13px;color:var(--muted);margin:12px 0 0}
-/* フォーム */
+.note{font-size:13px;color:var(--muted);margin:10px 0 0}
 label{display:block;font-weight:500;font-size:14px;margin:16px 0 6px}
 label small{font-weight:400;color:var(--muted);font-size:12px;margin-left:4px}
 label small.req{color:#fff;background:var(--err);border-radius:4px;padding:1px 6px}
 input[type=text],input[type=tel],input[type=email],input[type=date],select,textarea{
   width:100%;font:inherit;font-size:16px;padding:11px 12px;border:1.5px solid var(--line);border-radius:10px;background:#fff;color:var(--text)}
-input:focus,select:focus,textarea:focus{outline:none;border-color:var(--navy2);box-shadow:0 0 0 3px rgba(31,49,96,.12)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 3px rgba(43,58,85,.14)}
 textarea{min-height:96px;resize:vertical}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
 @media(max-width:520px){.g2{grid-template-columns:1fr}}
 .opts{display:flex;flex-direction:column;gap:6px}
-.opts label{display:flex;align-items:center;gap:10px;margin:0;font-weight:400;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;cursor:pointer}
-.opts label:has(input:checked){border-color:var(--navy2);background:#f1f3f8}
+.opts label{display:flex;align-items:center;gap:10px;margin:0;font-weight:400;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;cursor:pointer;font-size:15px}
+.opts label:has(input:checked){border-color:var(--navy);background:#eef2f8}
 .opts input{width:18px;height:18px;accent-color:var(--navy);flex-shrink:0}
+.opts.inline{flex-direction:row;flex-wrap:wrap}
 .invalid{border-color:var(--err)!important}
 .errmsg{color:var(--err);font-size:12px;margin-top:4px;display:none}
 .invalid~.errmsg,.errmsg.show{display:block}
 #refnote{display:none;font-size:12px;color:var(--ok);margin-top:4px}
-button.submit{display:block;width:100%;margin-top:24px;padding:16px;font:inherit;font-size:17px;font-weight:700;color:#fff;background:var(--gold);border:none;border-radius:12px;cursor:pointer}
+button.submit{display:block;width:100%;margin-top:24px;padding:16px;font:inherit;font-size:17px;font-weight:700;color:#fff;background:var(--green);border:none;border-radius:12px;cursor:pointer}
 button.submit:disabled{opacity:.6;cursor:wait}
-.done{text-align:center;padding:36px 18px}
-.done h2{border:none;padding:0;font-size:22px}
-footer{text-align:center;font-size:13px;color:var(--muted);padding:20px 16px 36px}
-footer a{color:var(--navy);font-weight:700;text-decoration:none}
+#formerr a{color:var(--err);font-weight:700}
+.done{text-align:center;padding:34px 18px}
+.done h2{border:none;padding:0;font-size:21px;color:var(--navy)}
+footer{text-align:center;font-size:13px;color:#22304a;padding:8px 16px 34px}
 </style>
 </head>
 <body>
 
 <header>
-  <div class="brand">GENTLEMAN CLEANING</div>
-  <h1>エアコンクリーニング<br>ご予約フォーム</h1>
-  <p>台数とオプションを選ぶと概算が出ます。送信後すぐに確認メールが届き、作業日は担当者よりご連絡のうえ確定します。</p>
+  <div class="shop">GENTLEMAN CLEANING</div>
+  <button type="button" id="resetBtn">選び直し</button>
 </header>
-<div id="campbar"></div>
+<div id="pillwrap"><span id="pill">概算 <b>¥<span id="pillSum">0</span></b> 税込</span></div>
 
 <main>
-  <section class="card" id="calc">
-    <h2>1. 台数とオプションを選ぶ</h2>
-    <div class="row">
-      <div class="t"><b>エアコン台数（壁掛け）</b><span id="p_units"></span></div>
-      <div class="cnt" data-k="units"></div>
-    </div>
-    <div class="row sub">
-      <div class="t"><b>うち、お掃除機能付き</b><span id="p_auto"></span></div>
-      <div class="cnt" data-k="auto"></div>
-    </div>
-
-    <h3>オプション（台数分お選びください）</h3>
-    <div class="row hl">
-      <div class="t"><b>3点セット（おすすめ）</b><span id="p_set3"></span></div>
-      <div class="cnt" data-k="set3"></div>
-    </div>
-    <div class="row">
-      <div class="t"><b>防カビ・抗菌コート</b><span id="p_coat"></span></div>
-      <div class="cnt" data-k="coat"></div>
-    </div>
-    <div class="row">
-      <div class="t"><b>室外機クリーニング</b><span id="p_outdoor"></span></div>
-      <div class="cnt" data-k="outdoor"></div>
-    </div>
-    <div class="row">
-      <div class="t"><b>ドレンホース洗浄</b><span id="p_drain"></span></div>
-      <div class="cnt" data-k="drain"></div>
-    </div>
-
-    <div class="total" aria-live="polite">
-      <div class="lbl">💰 概算金額</div>
-      <div class="amt">¥<span id="sum">0</span> <small>円（税込・駐車場代別）</small></div>
-      <ul id="lines"></ul>
-    </div>
-    <p class="note">💡 こちらは概算です。汚れによる追加料金は基本的に発生しません（特殊な事情がある場合は作業前に必ずご説明します）。</p>
-  </section>
-
-  <form id="f" class="card" novalidate>
-    <h2>2. ご予約情報を入力する</h2>
-    <div class="g2">
-      <div><label>お名前 <small class="req">必須</small></label><input type="text" name="name" required autocomplete="name"><div class="errmsg">お名前を入力してください</div></div>
-      <div><label>電話番号 <small class="req">必須</small></label><input type="tel" name="phone" required autocomplete="tel" pattern="[0-9０-９\-－ ]{10,14}"><div class="errmsg">電話番号を入力してください</div></div>
-    </div>
-    <label>メールアドレス <small class="req">必須</small><small>確認メールの送付先</small></label>
-    <input type="email" name="email" required autocomplete="email"><div class="errmsg">メールアドレスを正しく入力してください</div>
-
-    <div class="g2">
-      <div>
-        <label>エリア（都府県） <small class="req">必須</small></label>
-        <select name="area" required>
-          <option value="">選択してください</option>
-          <option>東京</option><option>神奈川</option><option>埼玉</option><option>千葉</option>
-          <option>愛知</option><option>岐阜</option>
-          <option>大阪</option><option>兵庫</option><option>和歌山</option>
-          <option>福岡</option><option>佐賀</option><option>熊本</option>
-          <option>宮城</option>
-          <option>その他（備考にご記入ください）</option>
-        </select><div class="errmsg">エリアを選択してください</div>
+  <!-- ===== チャット風ウェルカム ===== -->
+  <div id="chat">
+    <div class="msg">
+      <p class="who">GENTLEMAN CLEANING</p>
+      <div class="bubble">ご覧いただきありがとうございます。エアコンクリーニングのご予約でよろしいですか？</div>
+      <div class="choices" id="q1">
+        <button type="button" class="chip solid" id="btnYes">はい</button>
+        <button type="button" class="chip" id="btnNo">いいえ</button>
       </div>
-      <div><label>郵便番号</label><input type="text" name="zip" inputmode="numeric" autocomplete="postal-code" placeholder="例）110-0000"></div>
-    </div>
-    <label>ご住所 <small class="req">必須</small></label>
-    <input type="text" name="address" required autocomplete="street-address"><div class="errmsg">ご住所を入力してください</div>
-
-    <label>お住まいのタイプ <small class="req">必須</small></label>
-    <div class="opts" data-group="house">
-      <label><input type="radio" name="house" value="戸建て" required>戸建て</label>
-      <label><input type="radio" name="house" value="マンション・アパート">マンション・アパート</label>
-      <label><input type="radio" name="house" value="その他（店舗・事務所など）">その他（店舗・事務所など）</label>
-    </div><div class="errmsg" data-for="house">お住まいのタイプを選択してください</div>
-
-    <div id="dates"></div>
-    <p class="note">※ご希望日での対応が難しい場合は、1〜2日以内に日程再調整のご連絡をいたします。</p>
-
-    <label>お支払い方法 <small class="req">必須</small></label>
-    <div class="opts">
-      <label><input type="radio" name="pay" value="作業当日にお支払い（現金）" required checked>作業当日にお支払い（現金）</label>
-      <label><input type="radio" name="pay" value="作業当日にお支払い（PayPay）">作業当日にお支払い（PayPay）</label>
-      <label><input type="radio" name="pay" value="PayPal請求書（カード払い可）">PayPal請求書（メールで届きます。カード払い可）</label>
     </div>
 
-    <label>駐車場 <small>駐車場代は別途実費</small></label>
-    <div class="opts">
-      <label><input type="radio" name="parking" value="敷地内に駐車可" checked>敷地内に駐車可</label>
-      <label><input type="radio" name="parking" value="近隣コインパーキング利用">近隣コインパーキング利用</label>
-      <label><input type="radio" name="parking" value="相談したい">相談したい</label>
+    <div id="flowYes" hidden>
+      <div class="msg me"><div class="bubble">はい</div></div>
+      <div class="msg">
+        <p class="who">GENTLEMAN CLEANING</p>
+        <div class="bubble">ありがとうございます。それでは、ご予約フォームへのご入力をお願いいたします。</div>
+        <div class="choices">
+          <button type="button" class="chip solid" id="btnToForm">ご予約フォームへ進む</button>
+        </div>
+      </div>
     </div>
 
-    <label>エアコン以外のお掃除もご相談いただけます <small>任意・料金は担当者からご案内します</small></label>
-    <div class="opts">
-      <label><input type="checkbox" name="other" value="お風呂・浴室">お風呂・浴室</label>
-      <label><input type="checkbox" name="other" value="キッチン・水回り">キッチン・水回り</label>
-      <label><input type="checkbox" name="other" value="洗濯機">洗濯機</label>
-      <label><input type="checkbox" name="other" value="その他">その他（備考にご記入ください）</label>
+    <div id="flowNo" hidden>
+      <div class="msg me"><div class="bubble">いいえ</div></div>
+      <div class="msg">
+        <p class="who">GENTLEMAN CLEANING</p>
+        <div class="bubble">かしこまりました。ご予約以外のご相談も承っております。</div>
+      </div>
+      <div class="menucard">
+        <div class="mc-h">メニュー</div>
+        <div class="mc-b">
+          <div><span>エアコンクリーニング（壁掛け）</span><b>8,900円/台</b></div>
+          <div><span>天井埋め込み（天カセ・業務用）</span><b>25,000円〜</b></div>
+          <div><span>その他ハウスクリーニング</span><b>ご相談ください</b></div>
+        </div>
+      </div>
+      <div class="choices">
+        <button type="button" class="chip solid" id="btnReserve">はい、予約します</button>
+        <a class="chip" href="https://line.me/R/ti/p/@655dbzyx" target="_blank" rel="noopener">ご相談したいです</a>
+      </div>
     </div>
+  </div>
 
-    <label>ご要望・備考</label>
-    <textarea name="note" placeholder="エアコンの設置場所、メーカー、気になる点などがあればご記入ください"></textarea>
+  <!-- ===== ご予約フォーム ===== -->
+  <div id="formArea" hidden>
+    <section class="card" id="calc">
+      <h2>ご予約フォーム</h2>
+      <p class="intro">台数とオプションを選ぶと概算が出ます。送信後すぐに確認メールが届き、作業日は担当者よりご連絡のうえ確定します。</p>
 
-    <label>紹介コード <small>任意・ご家族やお知り合いから紹介された方</small></label>
-    <input type="text" name="ref" id="ref_code" maxlength="30">
-    <div id="refnote">紹介リンクからのご予約です。紹介コードを自動で入力しました。</div>
+      <h3>1. 台数とオプションを選ぶ</h3>
+      <div class="row">
+        <div class="t"><b>エアコン台数（壁掛け）</b><span>8,900円/台</span></div>
+        <div class="cnt" data-k="units"></div>
+      </div>
+      <div class="row sub">
+        <div class="t"><b>うち、お掃除機能付き</b><span>＋6,000円/台</span></div>
+        <div class="cnt" data-k="auto"></div>
+      </div>
+      <div class="row">
+        <div class="t"><b>天井埋め込み（天カセ・業務用）</b><span>25,000円/台</span></div>
+        <div class="cnt" data-k="cassette"></div>
+      </div>
+      <p class="note">※天井埋め込みは、対応できない地域があります。担当者よりご連絡します。</p>
 
-    <button type="submit" class="submit" id="btn">この内容で予約する</button>
-    <div class="errmsg" id="formerr"></div>
-    <p class="note">送信後、確認メールをお送りします。作業日はご予約から5営業日以内に担当者よりご連絡し確定します。ご希望日での対応が難しい場合は、1〜2日以内に日程再調整のご連絡をいたします。</p>
-  </form>
+      <h3>オプション（台数分お選びください）</h3>
+      <div class="row hl">
+        <div class="t"><b>3点セット</b><span>防カビ抗菌コート＋室外機＋ドレンホース｜7,500円/台（別々に頼むより2,500円お得）</span></div>
+        <div class="cnt" data-k="set3"></div>
+      </div>
+      <div class="row">
+        <div class="t"><b>防カビ・抗菌コート</b><span>3,000円/台</span></div>
+        <div class="cnt" data-k="coat"></div>
+      </div>
+      <div class="row">
+        <div class="t"><b>室外機クリーニング</b><span>4,000円/台</span></div>
+        <div class="cnt" data-k="outdoor"></div>
+      </div>
+      <div class="row">
+        <div class="t"><b>ドレンホース洗浄</b><span>3,000円/台</span></div>
+        <div class="cnt" data-k="drain"></div>
+      </div>
+      <div class="row">
+        <div class="t"><b>おまとめセット</b><span>室外機＋防カビ・抗菌コート｜5,000円/台</span></div>
+        <div class="cnt" data-k="bundle"></div>
+      </div>
+
+      <div class="total" aria-live="polite">
+        <div class="amt">概算金額 <b>¥<span id="sum">0</span></b> 円（税込・駐車場代別）</div>
+        <ul id="lines"></ul>
+      </div>
+    </section>
+
+    <form id="f" class="card" novalidate>
+      <h2>2. ご予約情報を入力する</h2>
+      <div class="g2">
+        <div><label>お名前 <small class="req">必須</small></label><input type="text" name="name" required autocomplete="name"><div class="errmsg">お名前を入力してください</div></div>
+        <div><label>電話番号 <small class="req">必須</small></label><input type="tel" name="phone" required autocomplete="tel" pattern="[0-9０-９\-－ ]{10,14}"><div class="errmsg">電話番号を入力してください</div></div>
+      </div>
+      <div class="g2">
+        <div><label>ふりがな <small class="req">必須</small></label><input type="text" name="furigana" required><div class="errmsg">ふりがなを入力してください</div></div>
+        <div><label>メールアドレス <small class="req">必須</small><small>確認メールの送付先</small></label><input type="email" name="email" required autocomplete="email"><div class="errmsg">メールアドレスを正しく入力してください</div></div>
+      </div>
+
+      <div class="g2">
+        <div>
+          <label>エリア（都府県） <small class="req">必須</small></label>
+          <select name="area" required>
+            <option value="">選択してください</option>
+            <optgroup label="関東">
+              <option>東京</option><option>神奈川</option><option>埼玉</option><option>千葉</option>
+            </optgroup>
+            <optgroup label="中部">
+              <option>愛知</option><option>岐阜</option>
+            </optgroup>
+            <optgroup label="関西">
+              <option>大阪</option><option>兵庫</option><option>和歌山</option>
+            </optgroup>
+            <optgroup label="九州">
+              <option>福岡</option><option>佐賀</option><option>熊本</option>
+            </optgroup>
+            <optgroup label="東北">
+              <option>宮城</option>
+            </optgroup>
+            <optgroup label="その他">
+              <option>その他（備考にご記入ください）</option>
+            </optgroup>
+          </select><div class="errmsg">エリアを選択してください</div>
+        </div>
+        <div><label>郵便番号</label><input type="text" name="zip" inputmode="numeric" autocomplete="postal-code" placeholder="例）110-0015"></div>
+      </div>
+      <label>ご住所 <small class="req">必須</small></label>
+      <input type="text" name="address" required autocomplete="street-address"><div class="errmsg">ご住所を入力してください</div>
+
+      <label>お住まいのタイプ <small class="req">必須</small></label>
+      <div class="opts" data-group="house">
+        <label><input type="radio" name="house" value="戸建て" required>戸建て</label>
+        <label><input type="radio" name="house" value="マンション・アパート">マンション・アパート</label>
+        <label><input type="radio" name="house" value="その他（店舗・事務所など）">その他（店舗・事務所など）</label>
+      </div><div class="errmsg" data-for="house">お住まいのタイプを選択してください</div>
+
+      <div id="dates"></div>
+      <p class="note">※ご希望日での対応が難しい場合は、1〜2日以内に日程再調整のご連絡をいたします。</p>
+
+      <div class="g2">
+        <div>
+          <label>お支払い方法</label>
+          <select name="pay">
+            <option selected>作業当日にお支払い（現金）</option>
+            <option>作業当日にお支払い（PayPay）</option>
+          </select>
+        </div>
+        <div>
+          <label>駐車場 <small>駐車場代は別途実費</small></label>
+          <select name="parking">
+            <option selected>敷地内に駐車可</option>
+            <option>近隣コインパーキング利用</option>
+            <option>相談したい</option>
+          </select>
+        </div>
+      </div>
+
+      <label>ペットの有無 <small class="req">必須</small></label>
+      <div class="opts inline" data-group="pets">
+        <label><input type="radio" name="pets" value="なし" required>なし</label>
+        <label><input type="radio" name="pets" value="あり">あり</label>
+      </div><div class="errmsg" data-for="pets">ペットの有無を選択してください</div>
+
+      <label>メーカー名と型式番号 <small>任意・わかる範囲で</small></label>
+      <input type="text" name="model" placeholder="例）ダイキン AN25XES など">
+
+      <label>その他のお掃除 <small>任意</small></label>
+      <div class="opts">
+        <label><input type="checkbox" name="extras" value="お風呂換気扇分解">お風呂換気扇分解（10,000円）</label>
+        <label><input type="checkbox" name="extras" value="レンジフード">レンジフード（15,000円）</label>
+      </div>
+      <p class="note">※選ぶと上の概算金額に入ります。</p>
+
+      <label>スタッフの指名</label>
+      <div class="opts">
+        <label><input type="checkbox" name="nominate" value="希望する">スタッフの指名を希望する（＋3,000円）</label>
+      </div>
+
+      <label>エアコン以外のお掃除もご相談いただけます <small>任意・料金は担当者からご案内します</small></label>
+      <div class="opts">
+        <label><input type="checkbox" name="other" value="お風呂・浴室">お風呂・浴室</label>
+        <label><input type="checkbox" name="other" value="キッチン・水回り">キッチン・水回り</label>
+        <label><input type="checkbox" name="other" value="洗濯機">洗濯機</label>
+        <label><input type="checkbox" name="other" value="その他">その他（備考にご記入ください）</label>
+      </div>
+
+      <label>ご要望・備考</label>
+      <textarea name="note" placeholder="設置場所、メーカー、気になる症状、10年以上の機種かどうか、その他のお掃除のご相談内容 など"></textarea>
+
+      <div class="g2">
+        <div><label>クーポンコード <small>任意</small></label><input type="text" name="coupon" maxlength="30"></div>
+        <div><label>紹介コード <small>任意・ご家族やお知り合いから紹介された方</small></label><input type="text" name="ref" id="ref_code" maxlength="30" placeholder="例：R0929-311"><div id="refnote">紹介リンクからのご予約です。紹介コードを自動で入力しました。</div></div>
+      </div>
+
+      <button type="submit" class="submit" id="btn">この内容で予約する</button>
+      <div class="errmsg" id="formerr"></div>
+      <p class="note">送信後、確認メールをお送りします。作業日はご予約から5営業日以内に担当者よりご連絡し確定します。ご希望日での対応が難しい場合は、1〜2日以内に日程再調整のご連絡をいたします。</p>
+    </form>
+  </div>
 
   <section class="card done" id="done" hidden>
     <h2>ご予約ありがとうございます</h2>
-    <p>ご入力のメールアドレスに確認メールをお送りしました。<br>担当者より作業日のご連絡をいたしますので、しばらくお待ちください。</p>
-    <p class="note">確認メールが届かない場合は、迷惑メールフォルダをご確認いただくか、お電話でお問い合わせください。</p>
+    <p>ご予約を受け付けました。確認メールをお送りしました。担当者より作業日確定のご連絡をいたします。</p>
   </section>
 </main>
 
 <footer>
-  <div>GENTLEMAN CLEANING　<a id="tel"></a></div>
-  <div>© <span id="company"></span></div>
+  <div>GENTLEMAN CLEANING（株式会社CTW）</div>
+  <div>© 株式会社CTW</div>
 </footer>
 
 <script>
-/* ===== 設定（ここだけ書き換えればOK） ===== */
+/* ===== 設定 ===== */
 const CONFIG = {
   SHOP_NAME: "GENTLEMAN CLEANING",
   COMPANY:   "株式会社CTW",
-  TEL:       "03-4400-3969",
   GAS_URL:   "https://script.google.com/macros/s/AKfycbzOaSZW3KsIILguNR8kqeKGuTFOuvWO9NOW0sh7yUm8LgpPoXNXybSWxjSMbIPCNLs/exec",
-  // キャンペーン（使わないときは END を "" に）
-  CAMPAIGN_END: "",                  // 例 "2026-12-31T23:59:59+09:00"
-  CAMPAIGN_TEXT: "期間限定キャンペーン実施中！",
+  LINE_URL:  "https://line.me/R/ti/p/@655dbzyx",
 };
-// 通常価格（円／台）
-const NORMAL = { unit:8000, auto:6000, set3:7000, coat:3000, outdoor:4000, drain:2500 };
-// キャンペーン価格（1台目 first、2台目以降 add）
-const CAMP   = { first:6000, add:5000, auto:5000, set3:7000, coat:3000, outdoor:4000, drain:2500 };
-/* ========================================== */
+/* ===== 料金（円） ===== */
+const PRICES = { unit:8900, auto:6000, cassetteFirst:25000, cassetteAdd:25000,
+  set3:7500, coat:3000, outdoor:4000, drain:3000, bundle:5000, nomination:3000 };
+const EXTRAS = { "お風呂換気扇分解":10000, "レンジフード":15000 };
+const OPTION_NAMES = { set3:"3点セット", coat:"防カビ・抗菌コート", outdoor:"室外機クリーニング", drain:"ドレンホース洗浄", bundle:"おまとめセット" };
+
+/* 概算計算（純粋関数：s = {units,auto,cassette,set3,coat,outdoor,drain,bundle,extras:[名称],nominate:bool}） */
+function computeLines(s){
+  const lines = [];
+  if (s.units) lines.push(["エアコンクリーニング（壁掛け）", s.units, PRICES.unit]);
+  if (s.auto) lines.push(["お掃除機能付き加算", s.auto, PRICES.auto]);
+  if (s.cassette) {
+    lines.push(["天井埋め込み（天カセ・業務用）1台目", 1, PRICES.cassetteFirst]);
+    if (s.cassette > 1) lines.push(["天井埋め込み（天カセ・業務用）2台目〜", s.cassette - 1, PRICES.cassetteAdd]);
+  }
+  for (const k of ["set3","coat","outdoor","drain","bundle"]) if (s[k]) lines.push([OPTION_NAMES[k], s[k], PRICES[k]]);
+  for (const name of (s.extras || [])) if (EXTRAS[name]) lines.push([name, 1, EXTRAS[name]]);
+  if (s.nominate) lines.push(["スタッフ指名", 1, PRICES.nomination]);
+  const total = lines.reduce((sum, [, q, p]) => sum + q * p, 0);
+  return { lines, total };
+}
 
 const $ = s => document.querySelector(s);
 const yen = n => n.toLocaleString("ja-JP");
-const isCampaign = () => !!CONFIG.CAMPAIGN_END && Date.now() <= new Date(CONFIG.CAMPAIGN_END).getTime();
-const NAMES = { coat:"防カビ・抗菌コート", outdoor:"室外機クリーニング", drain:"ドレンホース洗浄" };
-const st = { units:1, auto:0, set3:0, coat:0, outdoor:0, drain:0 };
+const st = { units:1, auto:0, cassette:0, set3:0, coat:0, outdoor:0, drain:0, bundle:0 };
 
-$("#tel").textContent = "☎ " + CONFIG.TEL;
-$("#tel").href = "tel:" + CONFIG.TEL.replace(/[^0-9]/g, "");
-$("#company").textContent = CONFIG.COMPANY;
-
-function labels(){
-  const c = isCampaign();
-  const separate = NORMAL.coat + NORMAL.outdoor + NORMAL.drain;
-  $("#campbar").style.display = c ? "block" : "none";
-  $("#campbar").textContent = CONFIG.CAMPAIGN_TEXT;
-  $("#p_units").innerHTML = c ? `<s>${yen(NORMAL.unit)}円</s> → 1台目${yen(CAMP.first)}円／2台目〜${yen(CAMP.add)}円` : `${yen(NORMAL.unit)}円/台`;
-  $("#p_auto").innerHTML  = c ? `<s>＋${yen(NORMAL.auto)}円</s> → ＋${yen(CAMP.auto)}円/台` : `＋${yen(NORMAL.auto)}円/台`;
-  const s3 = c ? CAMP.set3 : NORMAL.set3;
-  $("#p_set3").textContent = `防カビ抗菌コート＋室外機＋ドレンホース｜${yen(s3)}円/台（別々なら${yen(separate)}円）`;
-  $("#p_coat").textContent = `${yen(NORMAL.coat)}円/台`;
-  $("#p_outdoor").textContent = `${yen(NORMAL.outdoor)}円/台`;
-  $("#p_drain").textContent = `${yen(NORMAL.drain)}円/台`;
+function currentExtras(){
+  return [...document.querySelectorAll('input[name="extras"]:checked')].map(el => el.value);
+}
+function currentNominate(){
+  return !!document.querySelector('input[name="nominate"]:checked');
+}
+function calc(){
+  return computeLines({ ...st, extras: currentExtras(), nominate: currentNominate() });
 }
 
-// 上限：お掃除機能付き≦台数、オプション（3点セット＋単品）はそれぞれ台数まで
+/* 上限：お掃除機能付き≦壁掛け台数、オプション≦総台数（壁掛け＋天カセ） */
 function max(k){
-  if (k === "units") return 20;
+  if (k === "units" || k === "cassette") return 20;
   if (k === "auto") return st.units;
-  if (k === "set3") return st.units - Math.max(st.coat, st.outdoor, st.drain);
-  return st.units - st.set3;
+  return st.units + st.cassette;
 }
 function clamp(){
-  for (const k of ["auto","set3","coat","outdoor","drain"]) st[k] = Math.min(st[k], Math.max(0, max(k)));
-}
-
-function calc(){
-  const c = isCampaign(), u = st.units, lines = [];
-  if (u) {
-    if (c) {
-      lines.push(["エアコンクリーニング（1台目）", 1, CAMP.first]);
-      if (u > 1) lines.push(["エアコンクリーニング（2台目〜）", u-1, CAMP.add]);
-    } else lines.push(["エアコンクリーニング", u, NORMAL.unit]);
-  }
-  if (st.auto) lines.push(["お掃除機能付き加算", st.auto, c ? CAMP.auto : NORMAL.auto]);
-  if (st.set3) lines.push(["3点セット", st.set3, c ? CAMP.set3 : NORMAL.set3]);
-  for (const k of ["coat","outdoor","drain"]) if (st[k]) lines.push([NAMES[k], st[k], NORMAL[k]]);
-  const total = lines.reduce((s,[,q,p]) => s + q*p, 0);
-  return { lines, total };
+  for (const k of Object.keys(st)) st[k] = Math.min(st[k], Math.max(0, max(k)));
 }
 
 function render(){
@@ -276,7 +381,8 @@ function render(){
   });
   const { lines, total } = calc();
   $("#sum").textContent = yen(total);
-  $("#lines").innerHTML = lines.map(([n,q,p]) => `<li><span>${n} × ${q}</span><span>${yen(q*p)}円</span></li>`).join("");
+  $("#pillSum").textContent = yen(total);
+  $("#lines").innerHTML = lines.map(([n, q, p]) => `<li><span>${n} × ${q}</span><span>${yen(q * p)}円</span></li>`).join("");
 }
 
 document.querySelectorAll(".cnt").forEach(el => {
@@ -285,45 +391,73 @@ document.querySelectorAll(".cnt").forEach(el => {
   el.querySelector(".m").onclick = () => { st[k]--; render(); };
   el.querySelector(".p").onclick = () => { st[k]++; render(); };
 });
+document.querySelectorAll('input[name="extras"], input[name="nominate"]').forEach(el => el.addEventListener("change", render));
 
-// 希望日（第一〜第三）
+/* ===== チャット風ウェルカムの流れ ===== */
+function lockQ1(){ $("#btnYes").disabled = true; $("#btnNo").disabled = true; }
+function showYes(){ lockQ1(); $("#flowNo").hidden = true; $("#flowYes").hidden = false; }
+$("#btnYes").onclick = showYes;
+$("#btnReserve").onclick = showYes;
+$("#btnNo").onclick = () => { lockQ1(); $("#flowYes").hidden = true; $("#flowNo").hidden = false; };
+$("#btnToForm").onclick = () => {
+  $("#formArea").hidden = false;
+  $("#pillwrap").style.display = "block";
+  $("#formArea").scrollIntoView({ behavior:"smooth" });
+};
+$("#resetBtn").onclick = () => {
+  $("#formArea").hidden = true;
+  $("#done").hidden = true;
+  $("#chat").hidden = false;
+  $("#pillwrap").style.display = "none";
+  $("#flowYes").hidden = true;
+  $("#flowNo").hidden = true;
+  $("#btnYes").disabled = false;
+  $("#btnNo").disabled = false;
+  window.scrollTo({ top:0, behavior:"smooth" });
+};
+
+/* ===== 希望日（第一〜第三） ===== */
 (() => {
   const times = ["9時〜12時","12時〜15時","15時〜18時","上記以外で相談したい"];
-  const now = new Date(Date.now() + 9*3600e3); now.setUTCDate(now.getUTCDate() + 2);
-  const min = now.toISOString().slice(0,10);
-  $("#dates").innerHTML = ["第一","第二","第三"].map((w,i) => `
-    <div class="g2">
-      <div><label>作業日${w}希望 <small class="req">必須</small></label><input type="date" name="date${i+1}" min="${min}" required><div class="errmsg">日付を選択してください</div></div>
-      <div><label>${w}希望の時間帯 <small class="req">必須</small></label><select name="time${i+1}" required><option value="">選択してください</option>${times.map(t=>`<option>${t}</option>`).join("")}</select><div class="errmsg">時間帯を選択してください</div></div>
-    </div>`).join("");
+  const now = new Date(Date.now() + 9 * 3600e3); now.setUTCDate(now.getUTCDate() + 2);
+  const min = now.toISOString().slice(0, 10);
+  $("#dates").innerHTML = ["第一","第二","第三"].map((w, i) => `
+    <label>作業日${w}希望 <small class="req">必須</small></label>
+    <input type="date" name="date${i + 1}" min="${min}" required><div class="errmsg">日付を選択してください</div>
+    <label>${w}希望の時間帯 <small class="req">必須</small></label>
+    <div class="opts inline">${times.map((t, j) => `<label><input type="radio" name="time${i + 1}" value="${t}"${j === 0 ? " checked" : ""}>${t}</label>`).join("")}</div>`).join("");
 })();
 
-// 紹介リンク（?ref=コード）を90日間保存
+/* ===== URLパラメータ（src / ref） ===== */
+const urlParams = new URLSearchParams(location.search);
+const srcParam = (urlParams.get("src") || "").trim().slice(0, 50);
 (() => {
   const KEY = "gentleman_ref", DAYS = 90; let code = "";
   try {
-    const q = new URLSearchParams(location.search).get("ref");
-    if (q) { code = q.trim().slice(0,30); localStorage.setItem(KEY, JSON.stringify({ code, at: Date.now() })); }
-    else { const v = JSON.parse(localStorage.getItem(KEY) || "null"); if (v && Date.now() - v.at < DAYS*864e5) code = v.code; }
+    const q = urlParams.get("ref");
+    if (q) { code = q.trim().slice(0, 30); localStorage.setItem(KEY, JSON.stringify({ code, at: Date.now() })); }
+    else { const v = JSON.parse(localStorage.getItem(KEY) || "null"); if (v && Date.now() - v.at < DAYS * 864e5) code = v.code; }
   } catch (_) {}
   if (code) { $("#ref_code").value = code; $("#refnote").style.display = "block"; }
 })();
 
-// 送信
+/* ===== 送信 ===== */
 const form = $("#f");
 form.addEventListener("input", e => e.target.classList.remove("invalid"));
 form.addEventListener("change", e => { if (e.target.type === "radio") form.querySelector(`.errmsg[data-for="${e.target.name}"]`)?.classList.remove("show"); });
 
 function validate(){
   let first = null;
-  form.querySelectorAll("input[required]:not([type=radio]),select[required]").forEach(el => {
+  form.querySelectorAll("input[required]:not([type=radio]),select[required],textarea[required]").forEach(el => {
     const ok = el.checkValidity() && el.value.trim() !== "";
     el.classList.toggle("invalid", !ok);
     if (!ok && !first) first = el;
   });
-  if (!form.querySelector('input[name=house]:checked')) {
-    const m = form.querySelector('.errmsg[data-for="house"]'); m.classList.add("show");
-    if (!first) first = m.previousElementSibling;
+  for (const g of ["house", "pets"]) {
+    if (!form.querySelector(`input[name="${g}"]:checked`)) {
+      const m = form.querySelector(`.errmsg[data-for="${g}"]`); m.classList.add("show");
+      if (!first) first = m.previousElementSibling;
+    }
   }
   if (first) first.scrollIntoView({ behavior:"smooth", block:"center" });
   return !first;
@@ -331,33 +465,39 @@ function validate(){
 
 form.addEventListener("submit", async e => {
   e.preventDefault();
-  const err = $("#formerr"); err.classList.remove("show");
+  const err = $("#formerr"); err.classList.remove("show"); err.innerHTML = "";
   if (!validate()) return;
   const fd = new FormData(form);
   const { lines, total } = calc();
   const data = Object.fromEntries([...fd.keys()].map(k => [k, fd.getAll(k).join("、")]));
+  data.nominate = fd.get("nominate") ? "希望する" : "希望しない";
   Object.assign(data, {
+    campaign: "通常価格",
     shop: CONFIG.SHOP_NAME,
-    units: st.units, auto: st.auto, set3: st.set3, coat: st.coat, outdoor: st.outdoor, drain: st.drain,
-    breakdown: lines.map(([n,q,p]) => `${n} × ${q} = ${yen(q*p)}円`).join("\n"),
-    total, campaign: isCampaign() ? "キャンペーン価格" : "通常価格",
+    units: st.units, auto: st.auto, cassette: st.cassette,
+    set3: st.set3, coat: st.coat, outdoor: st.outdoor, drain: st.drain, bundle: st.bundle,
+    breakdown: lines.map(([n, q, p]) => `${n} × ${q} = ${yen(q * p)}円`).join("\n"),
+    total,
   });
-  if (!CONFIG.GAS_URL) { err.textContent = "送信先（GAS_URL）が未設定です。設定後にご利用ください。"; err.classList.add("show"); return; }
+  if (srcParam) data.src = srcParam;
   const btn = $("#btn"); btn.disabled = true; btn.textContent = "送信中…";
   try {
     // GAS はプリフライト不可のため text/plain で送る
     const r = await fetch(CONFIG.GAS_URL, { method:"POST", body: JSON.stringify(data), headers:{ "Content-Type":"text/plain;charset=utf-8" } });
     const j = await r.json();
     if (!j.ok) throw new Error(j.error || "送信に失敗しました");
-    $("#calc").hidden = true; form.hidden = true; $("#done").hidden = false;
+    $("#chat").hidden = true; $("#formArea").hidden = true;
+    $("#pillwrap").style.display = "none";
+    $("#done").hidden = false;
     window.scrollTo({ top:0, behavior:"smooth" });
   } catch (x) {
-    err.textContent = `送信できませんでした。お手数ですがお電話（${CONFIG.TEL}）でご連絡ください。`; err.classList.add("show");
+    err.innerHTML = `送信に失敗しました。お手数ですが、<a href="${CONFIG.LINE_URL}" target="_blank" rel="noopener">公式LINE</a>からご連絡ください。`;
+    err.classList.add("show");
     btn.disabled = false; btn.textContent = "この内容で予約する";
   }
 });
 
-labels(); render();
+render();
 </script>
 </body>
 </html>
